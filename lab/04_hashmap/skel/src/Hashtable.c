@@ -6,67 +6,82 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "utils.h"
 
 #include "Hashtable.h"
+
+#define MAX_BUCKET_SIZE 64
 
 /*
  * Functii de comparare a cheilor:
  */
-int compare_function_ints(void *a, void *b) {
-    int int_a = *((int *)a);
-    int int_b = *((int *)b);
+int
+compare_function_ints(void *a, void *b)
+{
+	int int_a = *((int *)a);
+	int int_b = *((int *)b);
 
-    if (int_a == int_b) {
-        return 0;
-    } else if (int_a < int_b) {
-        return -1;
-    } else {
-        return 1;
-    }
+	if (int_a == int_b) {
+		return 0;
+	} else if (int_a < int_b) {
+		return -1;
+	} else {
+		return 1;
+	}
 }
 
-int compare_function_strings(void *a, void *b) {
-    char *str_a = (char *)a;
-    char *str_b = (char *)b;
+int
+compare_function_strings(void *a, void *b)
+{
+	char *str_a = (char *)a;
+	char *str_b = (char *)b;
 
-    return strcmp(str_a, str_b);
+	return strcmp(str_a, str_b);
 }
 
 /*
  * Functii de hashing:
  */
-unsigned int hash_function_int(void *a) {
-    /*
-     * Credits: https://stackoverflow.com/a/12996028/7883884
-     */
-    unsigned int uint_a = *((unsigned int *)a);
+unsigned int
+hash_function_int(void *a)
+{
+	/*
+	 * Credits: https://stackoverflow.com/a/12996028/7883884
+	 */
+	unsigned int uint_a = *((unsigned int *)a);
 
-    uint_a = ((uint_a >> 16u) ^ uint_a) * 0x45d9f3b;
-    uint_a = ((uint_a >> 16u) ^ uint_a) * 0x45d9f3b;
-    uint_a = (uint_a >> 16u) ^ uint_a;
-    return uint_a;
+	uint_a = ((uint_a >> 16u) ^ uint_a) * 0x45d9f3b;
+	uint_a = ((uint_a >> 16u) ^ uint_a) * 0x45d9f3b;
+	uint_a = (uint_a >> 16u) ^ uint_a;
+	return uint_a;
 }
 
-unsigned int hash_function_string(void *a) {
-    /*
-     * Credits: http://www.cse.yorku.ca/~oz/hash.html
-     */
-    unsigned char *puchar_a = (unsigned char*) a;
-    unsigned long hash = 5381;
-    int c;
+unsigned int
+hash_function_string(void *a)
+{
+	/*
+	 * Credits: http://www.cse.yorku.ca/~oz/hash.html
+	 */
+	unsigned char *puchar_a = (unsigned char*) a;
+	unsigned long hash = 5381;
+	int c;
 
-    while ((c = *puchar_a++))
-        hash = ((hash << 5u) + hash) + c; /* hash * 33 + c */
+	while ((c = *puchar_a++))
+		hash = ((hash << 5u) + hash) + c; /* hash * 33 + c */
 
-    return hash;
+	return hash;
 }
 
 /*
  * Functie apelata dupa alocarea unui hashtable pentru a-l initializa.
  * Trebuie alocate si initializate si listele inlantuite.
  */
-void init_ht(struct Hashtable *ht, int hmax, unsigned int (*hash_function)(void*), int (*compare_function)(void*, void*)) {
-    /* TODO */
+hashtable_t *
+ht_create(unsigned int hmax, unsigned int (*hash_function)(void*),
+		int (*compare_function)(void*, void*))
+{
+	/* TODO */
+	return NULL;
 }
 
 /*
@@ -82,14 +97,19 @@ void init_ht(struct Hashtable *ht, int hmax, unsigned int (*hash_function)(void*
  * Nu ne dorim acest lucru, fiindca exista riscul sa ajungem in situatia in care nu mai stim la ce cheie este
  * inregistrata o anumita valoare.
  */
-void put(struct Hashtable *ht, void *key, int key_size_bytes, void *value) {
-    /* TODO */
+void
+ht_put(hashtable_t *ht, void *key, unsigned int key_size,
+	void *value, unsigned int value_size)
+{
+	/* TODO */
+
 }
 
-void* get(struct Hashtable *ht, void *key) {
-    /* TODO */
-
-    return NULL;
+void *
+ht_get(hashtable_t *ht, void *key)
+{
+	/* TODO */
+	return NULL;
 }
 
 /*
@@ -97,10 +117,11 @@ void* get(struct Hashtable *ht, void *key) {
  * 1, daca pentru cheia key a fost asociata anterior o valoare in hashtable folosind functia put
  * 0, altfel.
  */
-int has_key(struct Hashtable *ht, void *key) {
-    /* TODO */
-
-    return 0;
+int
+ht_has_key(hashtable_t *ht, void *key)
+{
+	/* TODO */
+	return 0;
 }
 
 /*
@@ -109,30 +130,38 @@ int has_key(struct Hashtable *ht, void *key) {
  * pentru copia lui key --vezi observatia de la procedura put--, pentru structura info si pentru structura Node din
  * lista inlantuita).
  */
-void remove_ht_entry(struct Hashtable *ht, void *key) {
-    /* TODO */
+void
+ht_remove_entry(hashtable_t *ht, void *key)
+{
+	/* TODO */
+
 }
 
 /*
  * Procedura care elibereaza memoria folosita de toate intrarile din hashtable, dupa care elibereaza si memoria folosita
  * pentru a stoca structura hashtable.
  */
-void free_ht(struct Hashtable *ht) {
-    /* TODO */
+void
+ht_free(hashtable_t *ht)
+{
+	/* TODO */
+
 }
 
-int get_ht_size(struct Hashtable *ht) {
-    if (ht == NULL) {
-        return -1;
-    }
+unsigned int
+ht_get_size(hashtable_t *ht)
+{
+	if (ht == NULL)
+		return 0;
 
-    return ht->size;
+	return ht->size;
 }
 
-int get_ht_hmax(struct Hashtable *ht) {
-    if (ht == NULL) {
-        return -1;
-    }
+unsigned int
+ht_get_hmax(hashtable_t *ht)
+{
+	if (ht == NULL)
+		return 0;
 
-    return ht->hmax;
+	return ht->hmax;
 }
