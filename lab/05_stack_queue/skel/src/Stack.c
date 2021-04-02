@@ -1,37 +1,65 @@
-#include <stdio.h>
 #include <stdlib.h>
 
 #include "Stack.h"
+#include "utils.h"
 
-void init_stack(struct Stack *stack) {
-    stack->list = malloc(sizeof(struct LinkedList));
-    init_list(stack->list);
+stack_t *
+st_create(unsigned int data_size)
+{
+	/* TODO */
+	return NULL;
 }
 
-int get_size_stack(struct Stack *stack) {
-    /* TODO */
+unsigned int
+st_get_size(stack_t *st)
+{
+	/* TODO */
+	return 0;
 }
 
-int is_empty_stack(struct Stack *stack) {
-    /* TODO */
+/*
+ * Intoarce 1 daca stiva este goala si 0 in caz contrar.
+ */
+unsigned int
+st_is_empty(stack_t *st)
+{
+	/* TODO */
+	return 0;
 }
 
-void* peek_stack(struct Stack *stack) {
-    /* TODO */
+void *
+st_peek(stack_t *st)
+{
+	/* TODO */
+    // st->list->head->data
+	return NULL;
 }
 
-void pop_stack(struct Stack *stack) {
-    /* TODO */
+void
+st_pop(stack_t *st)
+{
+	/* TODO */
+    // remove_nth(0)
 }
 
-void push_stack(struct Stack *stack, void *new_data) {
-    /* TODO */
+void
+st_push(stack_t *st, void *new_data)
+{
+	/* TODO */
+    // add_nth(0)
 }
 
-void clear_stack(struct Stack *stack) {
-    /* TODO */
+void
+st_clear(stack_t *st)
+{
+	/* TODO */
+    // scoate nodurile din lista
+    // lista ramane alocata
 }
 
-void purge_stack(struct Stack *stack) {
-    /* TODO */
+void
+st_free(stack_t *st)
+{
+	/* TODO */
+    // ll_free + free(stiva)
 }
