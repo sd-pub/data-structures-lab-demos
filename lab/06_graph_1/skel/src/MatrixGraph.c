@@ -1,32 +1,42 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "MatrixGraph.h"
 
 /**
  * Initializeaza graful cu numarul de noduri primit ca parametru si aloca
  * memorie pentru matricea de adiacenta a grafului.
-*/
-void init_matrix_graph(MatrixGraph *graph, int nodes) {
-    /* TODO */
+ */
+matrix_graph_t*
+mg_create(int nodes)
+{
+	/* TODO */
 }
 
 /* Adauga o muchie intre nodurile sursa si destinatie */
-void add_edge_matrix_graph(MatrixGraph *graph, int src, int dest) {
-    /* TODO */
+void
+mg_add_edge(matrix_graph_t* graph, int src, int dest)
+{
+	/* TODO */
 }
 
 /* Returneaza 1 daca exista muchie intre cele doua noduri, 0 in caz contrar */
-int has_edge_matrix_graph(MatrixGraph *graph, int src, int dest) {
-    /* TODO */
+int
+mg_has_edge(matrix_graph_t* graph, int src, int dest)
+{
+	/* TODO */
 }
 
 /* Elimina muchia dintre nodurile sursa si destinatie */
-void remove_edge_matrix_graph(MatrixGraph *graph, int src, int dest) {
-    /* TODO */
+void
+mg_remove_edge(matrix_graph_t* graph, int src, int dest)
+{
+	/* TODO */
 }
 
 /* Elibereaza memoria folosita de matricea de adiacenta a grafului */
-void clear_matrix_graph(MatrixGraph *graph) {
-    /* TODO */
+void
+mg_free(matrix_graph_t* graph)
+{
+	/* TODO */
 }
