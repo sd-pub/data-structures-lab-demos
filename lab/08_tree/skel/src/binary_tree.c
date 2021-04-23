@@ -55,12 +55,12 @@ b_tree_insert(b_tree_t* b_tree, void* data)
 
     /* TODO */
 
-    // grafc complet
+    // graf complet
     //      = toate nivelurile (in afara de ultimul) pline; ultimul are toate
     //      nodurile in stanga
 
     // cautam primul nod din BFS care are macar un copil NULL
-    // adaugam b_node la nodul gasit anterior
+    // adaugam b_node la nodul gasit anterior (la primul copil NULL al lui)
 
     q_enqueue(q, &b_tree->root);
 
