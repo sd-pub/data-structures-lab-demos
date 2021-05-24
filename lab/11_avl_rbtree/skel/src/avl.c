@@ -236,7 +236,7 @@ __avl_insert(avl_node_t **node, void *value, size_t data_size,
 		*node = __node_create(...)
 
 	rc = cmp (node, value)
-	if (rc < 0)
+	if (rc > 0)
 		insert(left)
 	else
 		insert(right)
