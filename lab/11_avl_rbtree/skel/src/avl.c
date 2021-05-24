@@ -231,14 +231,17 @@ __avl_insert(avl_node_t **node, void *value, size_t data_size,
 {
 	/* TODO */
 	/*
-	cam ca la treap
+	cam ca la treap:
+	if (!*node)
+		*node = __node_create(...)
+
 	rc = cmp (node, value)
 	if (rc < 0)
 		insert(left)
-	else if (rc > 0)
-		insert(right)
 	else
-		inseram aici
+		insert(right)
+	
+	acum reechilibram arborele:
 
 	actualizam node->height
 	__avl_fix(node)
