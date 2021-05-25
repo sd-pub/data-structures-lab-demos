@@ -1,36 +1,84 @@
 #include <stdlib.h>
 
 #include "Queue.h"
+#include "utils.h"
 
-void init_q(struct Queue *q) {
-    q->list = malloc(sizeof(struct LinkedList));
-    init_list(q->list);
+queue_t *
+q_create(unsigned int data_size, unsigned int max_size)
+{
+	/* TODO */
+	return NULL;
 }
 
-int get_size_q(struct Queue *q) {
-    /* TODO */
+unsigned int
+q_get_size(queue_t *q)
+{
+	/* TODO */
+	return 0;
 }
 
-int is_empty_q(struct Queue *q) {
-    /* TODO */
+/*
+ * Intoarce 1 daca stiva este goala si 0 in caz contrar.
+ */
+unsigned int
+q_is_empty(queue_t *q)
+{
+	/* TODO */
+	return 0;
 }
 
-void* front(struct Queue *q) {
-    /* TODO */
+void *
+q_front(queue_t *q)
+{
+	/* TODO */
+	if (!q->size)
+		return NULL;
+
+	return NULL;
 }
 
-void dequeue(struct Queue *q) {
-    /* TODO */
+/* Functia intoarce true daca operatia s-a efectuat si false in caz contrar */
+bool
+q_dequeue(queue_t *q)
+{
+	/* TODO */
+	if (!q->size)
+		return false;
+
+	/*
+	free(buff[read_idx])
+	++read_idx % max_size
+	--size;
+	https://stackoverflow.com/questions/10623114/operation-on-may-be-undefined
+	*/
+	return true;
 }
 
-void enqueue(struct Queue *q, void *new_data) {
-    /* TODO */
+/* Functia intoarce true daca operatia s-a efectuat si false in caz contrar */
+bool
+q_enqueue(queue_t *q, void *new_data)
+{
+	/* TODO */
+	/*
+	if (size == max_size)
+		return false;
+
+	buff[write_idx] = malloc(data_size)
+	memcpy(buff[write_idx], new_data)
+	++write_idx % max_size
+	*/
+	return false;
 }
 
-void clear_q(struct Queue *q) {
-    /* TODO */
+void
+q_clear(queue_t *q)
+{
+	/* TODO */
+	// for(i = read_idx; i != write_idx; ++i % max_size)
 }
 
-void purge_q(struct Queue *q) {
-    /* TODO */
+void
+q_free(queue_t *q)
+{
+	/* TODO */
 }

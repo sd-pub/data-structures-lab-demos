@@ -1,118 +1,146 @@
 /**
  * SD, 2020
- * 
+ *
  * Lab #8, Binary Tree
- * 
+ *
  * Task #1 - Binary Tree implementation
  */
 
 #include "binary_tree.h"
-#include "queue.h"
-#include "utils.h"
+
+#define MAX_NODES 100
 
 /**
  * Helper function to create a node
  * @data: the data to be added in the node
+ * @data_size: data's size
  */
-static b_node_t *__b_node_create(int data)
+static b_node_t*
+__b_node_create(void* data, size_t data_size)
 {
-	b_node_t *b_node;
+    b_node_t* b_node;
 
-	b_node = malloc(sizeof(b_node_t));
-	DIE(b_node == NULL, "b_node malloc");
+    b_node = malloc(sizeof(*b_node));
+    DIE(b_node == NULL, "b_node malloc");
 
-	b_node->left = b_node->right = NULL;
+    b_node->left = b_node->right = NULL;
 
-	b_node->data = malloc(sizeof(int));
-	DIE(b_node->data == NULL, "b_node->data malloc");
-	*b_node->data = data;
+    b_node->data = malloc(data_size);
+    DIE(b_node->data == NULL, "b_node->data malloc");
+    memcpy(b_node->data, data, data_size);
 
-	return b_node;
+    return b_node;
 }
 
-b_tree_t *b_tree_create()
+b_tree_t*
+b_tree_create(size_t data_size)
 {
-	/* TODO */
-	return NULL;
+    /* TODO */
 }
 
-void b_tree_insert(b_tree_t *b_tree, int data)
+void
+b_tree_insert(b_tree_t* b_tree, void* data)
 {
-	Queue *q;
-	b_node_t *b_node, *b_node_tmp;
+    queue_t* q;
+    b_node_t *b_node, *b_node_tmp;
 
-	b_node = __b_node_create(data);
+    b_node = __b_node_create(data, b_tree->data_size);
 
-	if (!b_tree->root) {
-		b_tree->root = b_node;
-		return;
-	}
+    if (!b_tree->root) {
+        b_tree->root = b_node;
+        return;
+    }
 
-	q = malloc(sizeof(Queue));
-	init_q(q);
+    q = q_create(sizeof(void**), MAX_NODES);
 
-	/* TODO */
+    /* TODO */
 
-	purge_q(q);
-	free(q);
+    // graf complet
+    //      = toate nivelurile (in afara de ultimul) pline; ultimul are toate
+    //      nodurile in stanga
+
+    // cautam primul nod din BFS care are macar un copil NULL
+    // adaugam b_node la nodul gasit anterior (la primul copil NULL al lui)
+
+    q_enqueue(q, &b_tree->root);
+
+    /*
+    while(!q_empty()) {
+        b_node_tmp = *(b_node_t *)q_front()
+
+        if (b_node_tmp n-are copii)
+            break
+    }
+
+    b_node_tmp->left = b_node SAU b_node_tmp->right = b_node 
+    */
 }
 
-static void __b_tree_print_preorder(b_node_t *b_node)
+static void
+__b_tree_print_preorder(b_node_t* b_node, void (*print_data)(void*))
 {
-	if (!b_node)
-		return;
+    if (!b_node)
+        return;
 
-   /* TODO */
+    /* TODO */
 }
 
-void b_tree_print_preorder(b_tree_t *b_tree)
+void
+b_tree_print_preorder(b_tree_t* b_tree, void (*print_data)(void*))
 {
-	__b_tree_print_preorder(b_tree->root);
-	printf("\n");
+    __b_tree_print_preorder(b_tree->root, print_data);
+    printf("\n");
 }
 
-static void __b_tree_print_inorder(b_node_t *b_node)
+static void
+__b_tree_print_inorder(b_node_t* b_node, void (*print_data)(void*))
 {
-	if (!b_node)
-		return;
+    if (!b_node)
+        return;
 
-	/* TODO */
+    /* TODO */
 }
 
-void b_tree_print_inorder(b_tree_t *b_tree)
+void
+b_tree_print_inorder(b_tree_t* b_tree, void (*print_data)(void*))
 {
-	__b_tree_print_inorder(b_tree->root);
-	printf("\n");
+    __b_tree_print_inorder(b_tree->root, print_data);
+    printf("\n");
 }
 
-static void __b_tree_print_postorder(b_node_t *b_node)
+static void
+__b_tree_print_postorder(b_node_t* b_node, void (*print_data)(void*))
 {
-	if (!b_node)
-		return;
+    if (!b_node)
+        return;
 
-	/* TODO */
+    /* TODO */
 }
 
-void b_tree_print_postorder(b_tree_t *b_tree)
+void
+b_tree_print_postorder(b_tree_t* b_tree, void (*print_data)(void*))
 {
-	__b_tree_print_postorder(b_tree->root);
-	printf("\n");
+    __b_tree_print_postorder(b_tree->root, print_data);
+    printf("\n");
 }
 
 /**
  * Free the left and the right subtree of a node, its data and itself
  * @b_node: the node which has to free its children and itself
+ * @free_data: function used to free the data contained by a node
  */
-static void __b_tree_free(b_node_t *b_node)
+static void
+__b_tree_free(b_node_t* b_node, void (*free_data)(void*))
 {
-	if (!b_node)
-		return;
+    if (!b_node)
+        return;
 
-	/* TODO */
+    /* TODO */
 }
 
-void b_tree_free(b_tree_t *b_tree)
+void
+b_tree_free(b_tree_t* b_tree, void (*free_data)(void*))
 {
-	__b_tree_free(b_tree->root);
-	free(b_tree);
+    __b_tree_free(b_tree->root, free_data);
+    free(b_tree);
 }

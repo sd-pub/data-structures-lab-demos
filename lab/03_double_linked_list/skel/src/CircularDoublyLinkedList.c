@@ -27,6 +27,7 @@ dll_node_t*
 dll_get_nth_node(doubly_linked_list_t* list, unsigned int n)
 {
     /* TODO */
+    // n = n % size
 }
 
 /*
@@ -42,6 +43,23 @@ void
 dll_add_nth_node(doubly_linked_list_t* list, unsigned int n, const void* data)
 {
     /* TODO */
+    /*
+    new_node = create_node(...)
+
+    // conventie: daca size == 1 => head->next = head->prev = head
+    
+    if (!size)
+        head = new_node
+    else if (!n) -> O(1)
+        new_node->next = head
+        new_node->prev = head->prev
+        head = new_node
+    else -> O(n)
+        prev_node = get_nth(min(n - 1, size))
+        legati new_node intre prev_node si prev_node->next (aka current)
+
+    ++size;
+    */
 }
 
 /*
@@ -56,6 +74,17 @@ dll_node_t*
 dll_remove_nth_node(doubly_linked_list_t* list, unsigned int n)
 {
     /* TODO */
+    /*
+    removed = get_nth(n)  // aka current
+    facem removed->prev si removed->next sa pointeze unul la celalalt
+
+    if (!n)
+        head = head->next;
+
+    --size;
+    if (!size)
+        head = NULL
+    */
 }
 
 /*
@@ -116,6 +145,8 @@ void
 dll_print_ints_left_circular(dll_node_t* start)
 {
     /* TODO */
+    // crt = start->prev
+    // while (crt != start) {...}
 
     printf("\n");
 }
@@ -133,4 +164,12 @@ dll_print_ints_right_circular(dll_node_t* start)
     /* TODO */
     
     printf("\n");
+}
+
+
+void
+dll_remove_duplicates(doubly_linked_list_t *list)
+{
+    // a <-> a <-> a <-> b <-> c <-> c
+    // cat timp *crt->data != *crt->next->data: remove(crt->next)
 }

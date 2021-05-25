@@ -1,28 +1,51 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "ListGraph.h"
 
-void init_list_graph(ListGraph *graph, int nodes) {
-    /* TODO */
+list_graph_t*
+lg_create(int nodes)
+{
+	/* TODO */
+	// neigh[i] = ll_create(sizeof(int))
 }
 
-void add_edge_list_graph(ListGraph *graph, int src, int *dest) {
-    /* TODO */
+void
+lg_add_edge(list_graph_t* graph, int src, int dest)
+{
+	/* TODO */
+	// src -> dest
+	// add_nth(graph->neighbours[src], 0, dest)
 }
 
-int has_edge_list_graph(ListGraph *graph, int src, int dest) {
-    /* TODO */
+static ll_node_t *find_node(linked_list_t *ll, int node, unsigned int *pos)
+{
+	// copy-paste modificat de la Hashtable
+	return NULL;
 }
 
-LinkedList* get_neighbours_list_graph(ListGraph *graph, int node) {
-    /* TODO */
+int
+lg_has_edge(list_graph_t* graph, int src, int dest)
+{
+	/* TODO */
+	// folositi find_node
 }
 
-void remove_edge_list_graph(ListGraph *graph, int src, int dest) {
-    /* TODO */
+linked_list_t*
+lg_get_neighbours(list_graph_t* graph, int node)
+{
+	/* TODO */
 }
 
-void clear_list_graph(ListGraph *graph) {
-    /* TODO */
+void
+lg_remove_edge(list_graph_t* graph, int src, int dest)
+{
+	/* TODO */
+	// folositi find_node
+}
+
+void
+lg_free(list_graph_t* graph)
+{
+	/* TODO */
 }
